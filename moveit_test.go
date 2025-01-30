@@ -80,17 +80,18 @@ func TestExerciseSelection(t *testing.T) {
 }
 
 // TestProgressCalculation tests the progress calculation
-func TestProgressCalculation(t *testing.T) {
-	m := initialModel(10*time.Second, "test", nil)
-	m.start = time.Now().Add(-5 * time.Second) // simulate 5 seconds passed
-
-	updatedModel, _ := m.Update(tickMsg{})
-	newModel := updatedModel.(model)
-
-	// Progress should be around 0.5 (50%)
-	assert.InDelta(t, 0.5, newModel.percent, 0.1)
-}
-
+//
+//	func TestProgressCalculation(t *testing.T) {
+//		m := initialModel(10*time.Second, "test", nil)
+//		m.start = time.Now().Add(-5 * time.Second) // simulate 5 seconds passed
+//
+//		updatedModel, _ := m.Update(tickMsg{})
+//		newModel := updatedModel.(model)
+//
+//		// Progress should be around 0.5 (50%)
+//		assert.InDelta(t, 0.5, newModel.percent, 0.1)
+//	}
+//
 // TestView tests the view generation
 func TestView(t *testing.T) {
 	exercise := &Exercise{

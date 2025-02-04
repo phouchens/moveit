@@ -111,24 +111,6 @@ func TestView(t *testing.T) {
 	assert.Contains(t, view, "Press q to quit")
 }
 
-// TestNotificationFormatting tests the notification message formatting
-// func TestNotificationFormatting(t *testing.T) {
-// 	title := `Test "title" with quotes`
-// 	message := `Test "message" with quotes`
-//
-// 	err := sendMacNotification(title, message)
-// 	assert.NoError(t, err)
-// }
-//
-// // TestTimerFlow tests the overall timer flow
-// func TestTimerFlow(t *testing.T) {
-// 	// Short duration for testing
-// 	duration := 100 * time.Millisecond
-//
-// 	err := runTimer(duration, "Test Phase", nil)
-// 	assert.NoError(t, err)
-// }
-
 // TestWindowResize tests window resize handling
 func TestWindowResize(t *testing.T) {
 	m := initialModel(time.Minute, "test", nil)

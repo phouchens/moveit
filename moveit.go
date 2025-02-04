@@ -142,7 +142,9 @@ func sendMacNotification(title, message string) error {
 	title = strings.ReplaceAll(title, `"`, `\"`)
 
 	script := fmt.Sprintf(`
+        do shell script "afplay /System/Library/Sounds/Glass.aiff"
         tell application "System Events"
+            activate
             display dialog "%s" with title "%s" buttons {"OK"} default button "OK" with icon caution giving up after 86400
         end tell`, message, title)
 

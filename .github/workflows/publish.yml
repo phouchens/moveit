@@ -26,10 +26,8 @@ jobs:
 
       - name: Build binaries
         run: |
-          GOOS=linux GOARCH=amd64 go build -o workout-timer-linux-amd64
           GOOS=darwin GOARCH=amd64 go build -o workout-timer-darwin-amd64
           GOOS=darwin GOARCH=arm64 go build -o workout-timer-darwin-arm64
-          GOOS=windows GOARCH=amd64 go build -o workout-timer-windows-amd64.exe
 
       - name: Bump version and push tag
         id: tag_version

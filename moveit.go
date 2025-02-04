@@ -23,17 +23,37 @@ var exercises = []Exercise{
 	{
 		Name:        "Push-ups",
 		Description: "Place your hands shoulder-width apart, keep your body straight, lower yourself until your chest nearly touches the ground, then push back up.",
-		Duration:    "Do 3 sets of 10 repetitions",
+		Duration:    "Do 3 sets of 15 repetitions",
 	},
 	{
 		Name:        "Bodyweight Squats",
-		Description: "Stand with feet shoulder-width apart, lower your body as if sitting back into a chair, keeping your chest up and knees over toes.",
+		Description: "Squat down as deep as possible, Alternatively do wide leg squats.",
 		Duration:    "Do 3 sets of 15 repetitions",
 	},
 	{
 		Name:        "Plank",
-		Description: "Hold a push-up position with your forearms on the ground, keeping your body straight from head to heels.",
+		Description: "Hold a push-up position with your forearms on the ground. Alternatively- do side planks",
 		Duration:    "Hold for 30 seconds, rest, repeat 3 times",
+	},
+	{
+		Name:        "Curls",
+		Description: "Grab some dumbbells, Work them guns. If you don't have dumbbells do close grip pushups",
+		Duration:    "20-30 reps, 5 sets",
+	},
+	{
+		Name:        "Lunges",
+		Description: "Walking Lunges",
+		Duration:    "3 sets of 15 each leg",
+	},
+	{
+		Name:        "Overhead Press",
+		Description: "Grab some dumbbells, put em overhead",
+		Duration:    "5 sets of 15-20",
+	},
+	{
+		Name:        "Side Delt Raise",
+		Description: "Grab some dumbbells, Start with hands at side, raise them to the side to slightly above shoulder level, lower controlled.",
+		Duration:    "5 sets of 15-20",
 	},
 }
 
@@ -118,15 +138,13 @@ func (m model) View() string {
 }
 
 func sendMacNotification(title, message string) error {
-	// Escape double quotes in the message and title
 	message = strings.ReplaceAll(message, `"`, `\"`)
 	title = strings.ReplaceAll(title, `"`, `\"`)
 
 	script := fmt.Sprintf(`
         tell application "System Events"
-            display notification "%s" with title "%s" subtitle "Workout Timer" sound name "Glass"
-        end tell
-        delay 3`, message, title)
+            display dialog "%s" with title "%s" buttons {"OK"} default button "OK" with icon caution giving up after 86400
+        end tell`, message, title)
 
 	cmd := exec.Command("osascript", "-e", script)
 	output, err := cmd.CombinedOutput()
@@ -171,6 +189,7 @@ func main() {
 			os.Exit(1)
 		}
 
+		sendMacNotification("Time to Focus", fmt.Sprint("Good Job, Start Focus Time"))
 		fmt.Print("Press Enter to start next session or press 'q' to quit: ")
 		var input string
 		fmt.Scanln(&input)
